@@ -1,4 +1,4 @@
-name: Deploy to Lightsail
+name: Deploy to AWS Lightsail
 
 on:
   push:
@@ -8,15 +8,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install SSH client
-        run: sudo apt-get install openssh-client -y
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: true
 
       - name: Deploy to Lightsail
-        run: |
-          scp -r -i LightsailDefaultKey-us-east-1.pem ./build/* ubuntu@54.198.195.55:/path/to/your/public_html
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        uses: appleboy/rsync-action@v2
+        with:
+          args: -avz --delete
+          exclude: ".git"
+          source: "build/"
+          host: ${{ secrets.LIGHTSAIL_INSTANCE_IP }}
+          user: ${{ secrets.LIGHTSAIL_SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          target: "/var/www/html"
