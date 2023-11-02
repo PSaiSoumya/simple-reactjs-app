@@ -17,6 +17,6 @@ jobs:
 
       - name: Deploy to Lightsail
         run: |
-          scp -r -i your-ssh-key.pem ./build/* ubuntu@your-lightsail-instance-ip:/path/to/your/public_html
+          scp -r -i LightsailDefaultKey-us-east-1.pem ./build/* ubuntu@54.198.195.55:/path/to/your/public_html
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
