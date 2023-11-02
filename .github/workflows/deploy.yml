@@ -30,3 +30,13 @@ jobs:
           user: ${{ secrets.LIGHTSAIL_SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           target: "/var/www/html"
+          script: |
+
+            cd /var/www/html/
+
+            git checkout -f 
+
+            git pull
+
+
+
