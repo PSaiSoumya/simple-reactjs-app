@@ -21,13 +21,13 @@ jobs:
           CI: true
 
       - name: Deploy to Lightsail
-        uses: simple-reactjs-app/ssh-deploy@v2
+        uses: simple-reactjs-app/rsync-action@v2
         with:
           args: -avz --delete
           exclude: ".git"
           source: "build/"
           host: ${{ secrets.LIGHTSAIL_INSTANCE_IP }}
-          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
+          repo-token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           user: ${{ secrets.LIGHTSAIL_SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           target: "/var/www/html"
