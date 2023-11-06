@@ -25,7 +25,6 @@ jobs:
       - name: Deploy to Lightsail
         uses: appleboy/ssh-action@v0.1.7
         with:
-          args: -avz --delete
           source: "build/"
           host: ${{ secrets.LIGTHSAIL_IP }}
           username: ${{ secrets.LIGTHSAIL_USERNAME }}
