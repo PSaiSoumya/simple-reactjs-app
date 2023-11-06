@@ -23,20 +23,14 @@ jobs:
         run: npm install && npm run build
 
       - name: Deploy to Lightsail
-        run: npm run deploy
-
-      - name: Connect to AWS Lightsail
-        uses: appleboy/ssh-action@v0.1.7
+        uses: appleboy/rsync-action@v2
         with:
+          args: -avz --delete
+          exclude: ".git"
+          source: "build/"
           host: ${{ secrets.LIGTHSAIL_IP }}
           username: ${{ secrets.LIGTHSAIL_USERNAME }}
           key: ${{ secrets.LIGTHSAIL_KEY }}
-          password: ""
-          passphrase: ""
-          port: 22
-          script: |
-            cd /var/www/html/
-            git checkout -f 
-            git pull
+          target: "/var/www/html"
       - name: Deployment completed Successfully
         run: echo "Deployment completed successfuly"
