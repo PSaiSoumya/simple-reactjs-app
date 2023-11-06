@@ -21,7 +21,7 @@ jobs:
           CI: true
 
       - name: Deploy to Lightsail
-        uses: PSaiSoumya/rsync-action@v2
+        uses: appleboy/ssh-action@PSaiSoumya-patch-2
         with:
           args: -avz --delete
           exclude: ".git"
