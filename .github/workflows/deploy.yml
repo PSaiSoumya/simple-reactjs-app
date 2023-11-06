@@ -21,7 +21,7 @@ jobs:
           CI: true
 
       - name: Deploy to Lightsail
-        uses: appleboy/ssh-action@v2
+        uses: appleboy/rsync-action@v2
         with:
           args: -avz --delete
           exclude: ".git"
