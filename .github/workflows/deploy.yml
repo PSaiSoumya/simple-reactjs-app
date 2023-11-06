@@ -27,6 +27,7 @@ jobs:
           exclude: ".git"
           source: "build/"
           host: ${{ secrets.LIGHTSAIL_INSTANCE_IP }}
+          token: ${{ secrets.CUSTOM_GITHUB_TOKEN }}
           user: ${{ secrets.LIGHTSAIL_SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           target: "/var/www/html"
