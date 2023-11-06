@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Git clone https://github.com/PSaiSoumya/simple-reactjs-app.git
+      - name: Git clone Git clone https://github.com/yorgit.git
         uses: actions/checkout@v2
 
       - name: Install And Build Our React App
