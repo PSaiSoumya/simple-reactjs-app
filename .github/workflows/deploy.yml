@@ -23,7 +23,7 @@ jobs:
         run: npm install && npm run build
 
       - name: Deploy to Lightsail
-        uses: appleboy/ssh-action@v0.1.7
+        uses: appleboy/scp-action@v0.1.7
         with:
           source: "build/"
           host: ${{ secrets.LIGTHSAIL_IP }}
