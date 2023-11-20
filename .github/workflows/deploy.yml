@@ -30,6 +30,6 @@ jobs:
           username: ${{ secrets.LIGTHSAIL_USERNAME }}
           key: ${{ secrets.LIGTHSAIL_KEY }}
           port: 22
-          target: "/home/ubuntu"
+          target: "/var/www/html/react/"
       - name: Deployment completed Successfully
         run: echo "Deployment completed successfuly"
